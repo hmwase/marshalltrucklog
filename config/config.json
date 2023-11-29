@@ -1,0 +1,42 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "Jane1972",
+    "database": "MarshallTruckingLog",
+    "host": "PW741-A246US",
+    "dialect": "mssql",
+    "dialectModule": "tedious",
+    "dialectOptions": {
+        "options": {
+            "encrypt": "true"
+        }
+    
+  },
+  "test": {
+    "username": "sa",
+    "password": "Jane1972",
+    "database": "MarshallTruckingLog",
+    "host": "PW741-A246US",
+    "dialect": "mssql",
+    "dialectModule": "tedious",
+    "dialectOptions": {
+        "options": {
+            "encrypt": "true"
+        }
+    }
+  },
+  "production": {
+    "username": "sa",
+    "password": "Jane1972",
+    "database": "MarshallTruckingLog",
+    "host": "PW741-A246US",
+    "dialect": "mssql",
+    "dialectModule": "tedious",
+    "dialectOptions": {
+        "options": {
+            "encrypt": "true"
+        }
+    }
+  }
+}
+}
