@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-
+import Load from "./load";
 import sequelize from "../database";
 
 const TruckCheckIn = sequelize.define('TruckCheckIn', {
@@ -39,6 +39,14 @@ const TruckCheckIn = sequelize.define('TruckCheckIn', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  proNumber: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  carrierNumber: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   trailerType: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -65,16 +73,41 @@ const TruckCheckIn = sequelize.define('TruckCheckIn', {
   },
   inPlantDateTime: {
     type: DataTypes.DATE,
-    allowNull: true,
+    allowNull: false,
   },
   exitPlantDateTime: {
     type: DataTypes.DATE,
     allowNull: true,
   },
+  loadingStartTime: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  loadingEndTime: {
+    type : DataTypes.DATE,
+    allowNull : true,
+  },
+  strippingStartTime: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  strippingEndTime: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  scheduledDate: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
   remarks: {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
   truckCheckInId: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -82,6 +115,8 @@ const TruckCheckIn = sequelize.define('TruckCheckIn', {
   }
 });
 
+
+//  TruckCheckIn.belongsTo(Load);
 
 sequelize.sync();
 

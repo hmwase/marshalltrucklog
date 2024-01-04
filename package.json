@@ -10,6 +10,7 @@
     "type": "module"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
@@ -18,12 +19,14 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/lab": "^5.0.0-alpha.152",
     "@mui/material": "^5.14.17",
-    "@mui/x-data-grid": "^6.18.1",
+    "@mui/material-nextjs": "^5.15.0",
+    "@mui/x-data-grid": "^6.18.5",
     "@mui/x-date-pickers": "^6.18.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/react-query": "^5.8.4",
     "@tanstack/react-query-devtools": "^5.8.4",
     "bcrypt": "^5.1.1",
+    "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "next": "14.0.1",
     "next-auth": "^5.0.0-beta.3",
@@ -38,6 +41,7 @@
     "sequelize-cli": "^6.6.2",
     "tailwindcss": "^3.3.5",
     "use-debounce": "^10.0.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.22.4"
   },
   "devDependencies": {

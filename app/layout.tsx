@@ -47,10 +47,11 @@ import Navbar from '@/app/ui/navbar';
 import Link from 'next/link';
 import { inter} from '@/app/ui/fonts';
 import './globals.css';
-import { Provider } from './components/Provider';
+import LoadsProvider from '@/app/providers/LoadsContext';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'; // or `v14-appRouter` if you are using Next.js v14
+import Load from './lib/models/load';
 export default function RootLayout({
   children,
 }: {
@@ -62,14 +63,14 @@ export default function RootLayout({
      
         <html lang="en">
           <body className={`${inter.className} antialiased`}>
-          <Provider>
+          <LoadsProvider>
             <Navbar />
-            
-            {children}
-            </Provider>
+            <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+            </LoadsProvider>
+         
           </body>
         </html>
-
+     
 </LocalizationProvider>
 
   );

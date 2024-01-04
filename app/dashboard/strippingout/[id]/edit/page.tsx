@@ -1,4 +1,4 @@
-import Form from '@/app/ui/trucklogs/edit-trucklog';
+import Form from '@/app/ui/stripping/strippiing-form'
 import Breadcrumbs from '@/app/ui/trucklogs/breadcrumbs';
 import { fetchTruckCheckInById } from '@/app/lib/data';
 import { notFound } from 'next/navigation';
@@ -13,10 +13,10 @@ export default async function Page({params}: {params: {id: number}}) {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Truck Logs', href: '/dashboard/trucklogs' },
+          { label: 'Truck Logs', href: '/dashboard/strippingout' },
           {
             label: 'Edit Truck Log',
-            href: `/dashboard/trucklogs/${id}/edit`,
+            href: `/dashboard/strippingout/${id}/edit`,
             active: true,
           },
         ]}

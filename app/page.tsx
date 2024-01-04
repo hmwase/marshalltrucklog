@@ -20,7 +20,7 @@ export default function Page() {
         </div>
       </div>
       <div className={styles.desc}>
-        <Button variant="outlined" size="large" onClick={() => router.push("/trucklog/checkin")}>Check-In</Button>
+        <Link href="/dashboard/trucklogs">Check-In</Link>
       </div>
     </div>
   );

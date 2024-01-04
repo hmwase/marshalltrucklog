@@ -1,4 +1,4 @@
-import Form from '@/app/ui/trucklogs/edit-trucklog';
+import Form from '@/app/ui/loading/loading-form';
 import Breadcrumbs from '@/app/ui/trucklogs/breadcrumbs';
 import { fetchTruckCheckInById } from '@/app/lib/data';
 import { notFound } from 'next/navigation';
@@ -13,7 +13,7 @@ export default async function Page({params}: {params: {id: number}}) {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Truck Logs', href: '/dashboard/laoding' },
+          { label: 'Truck Logs', href: '/dashboard/loading' },
           {
             label: 'Edit Loading Log',
             href: `/dashboard/loading/${id}/edit`,

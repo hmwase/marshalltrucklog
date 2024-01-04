@@ -4,7 +4,12 @@ import React from 'react';
 import {updateTruckLog} from '@/app/lib/action'
 import TruckCheckIn from '@/app/lib/models/TruckCheckIn';
 import { TruckCheckInFields } from '@/app/lib/definition';
-
+import {
+  CheckIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
 import { init } from 'next/dist/compiled/webpack/webpack';
 
 export default function EditTruckLog({TruckCheckIn}: {TruckCheckIn: TruckCheckInFields}) {
@@ -192,16 +197,68 @@ export default function EditTruckLog({TruckCheckIn}: {TruckCheckIn: TruckCheckIn
               {/* Eighth Row */}
               <div className="grid grid-cols-3 gap-6 mt-6">
                 {/* Location */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Location</label>
-                  <input
-                    name="location"
-                    type="text"
-                    className="mt-1 p-2 block w-full rounded-md border border-gray-300"
-                    required
-                    defaultValue={TruckCheckIn.location}
-                  />
-                </div>
+                <div className="mt-6">
+                {/* Trailer Type */}
+                <label className="block text-sm font-medium text-gray-700">Trailer Type</label>
+                <select
+                  name="trailerType"
+                  className="mt-1 p-2 block w-full rounded-md border border-gray-300"
+                  required
+                >
+                  <option value="Conestega">Conestega</option>
+                  <option value="Container">Container</option>
+                  <option value="Flatbed">Flatbed</option>
+                  <option value="LTL">LTL</option>
+                  <option value="Roll Of Dumpster">Roll Of Dumpster</option>
+                </select>
+              </div>
+               
+              <div className="mt-6">
+                {/* Trailer Type */}
+                <label className="block text-sm font-medium text-gray-700">Location</label>
+                <select
+  name="location"
+  className="mt-1 p-2 block w-full rounded-md border border-gray-300"
+  required
+>
+  <option value="Dock 1">Dock 1</option>
+  <option value="Dock 2">Dock 2</option>
+  <option value="Dock 3">Dock 3</option>
+  <option value="Dock 4">Dock 4</option>
+  <option value="Dock 5">Dock 5</option>
+  <option value="Dock 6">Dock 6</option>
+  <option value="Dock 7">Dock 7</option>
+  <option value="Dock 8">Dock 8</option>
+  <option value="Drop Trailer 1">Drop Trailer 1</option>
+  <option value="Drop Trailer 2">Drop Trailer 2</option>
+  <option value="Drop Trailer 3">Drop Trailer 3</option>
+  <option value="Drop Trailer 4">Drop Trailer 4</option>
+  <option value="Drop Trailer 5">Drop Trailer 5</option>
+  <option value="Drop Trailer 6">Drop Trailer 6</option>
+  <option value="Drop Trailer 7">Drop Trailer 7</option>
+  <option value="Drop Trailer 8">Drop Trailer 8</option>
+  <option value="Drop Trailer 9">Drop Trailer 9</option>
+  <option value="Drop Trailer 10">Drop Trailer 10</option>
+  <option value="Drop Trailer 11">Drop Trailer 11</option>
+  <option value="Drop Trailer 12">Drop Trailer 12</option>
+  <option value="Drop Yard">Drop Yard</option>
+  <option value="Empty Reels">Empty Reels</option>
+  <option value="Lower-Pad D">Lower-Pad D</option>
+  <option value="Lower-Pad E">Lower-Pad E</option>
+  <option value="Lower-Pad F">Lower-Pad F</option>
+  <option value="Lower-Pad G">Lower-Pad G</option>
+  <option value="Receiving 1">Receiving 1</option>
+  <option value="Receiving 2">Receiving 2</option>
+  <option value="Receiving 3">Receiving 3</option>
+  <option value="Receiving 4">Receiving 4</option>
+  <option value="Receiving Reel">Receiving Reel</option>
+  <option value="Receiving Rod">Receiving Rod</option>
+  <option value="Receiving Store">Receiving Store</option>
+  <option value="Red Line">Red Line</option>
+  <option value="Scrap Area">Scrap Area</option>
+  <option value="Silo">Silo</option>
+</select>
+              </div>
     
                 {/* Destination City */}
                 <div>
@@ -240,8 +297,16 @@ export default function EditTruckLog({TruckCheckIn}: {TruckCheckIn: TruckCheckIn
                     type="datetime-local"
                     className="mt-1 p-2 block w-full rounded-md border border-gray-300"
                     required
+                    value={
+                      TruckCheckIn.inPlantDateTime
+                        ? new Date(TruckCheckIn.inPlantDateTime).toISOString().slice(0, 16)
+                        : ''
+                    }
                   />
                 </div>
+    
+                {/* Exit Plant Date and Time */}
+               
     
                 {/* Exit Plant Date and Time */}
                 <div>
@@ -250,6 +315,18 @@ export default function EditTruckLog({TruckCheckIn}: {TruckCheckIn: TruckCheckIn
                   </label>
                   <input
                     name="exitPlantDateTime"
+                    type="datetime-local"
+                    className="mt-1 p-2 block w-full rounded-md border border-gray-300"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                  Scheduled Date
+                  </label>
+                  <input
+                    name="scheduledDate"
                     type="datetime-local"
                     className="mt-1 p-2 block w-full rounded-md border border-gray-300"
                     required
@@ -266,6 +343,75 @@ export default function EditTruckLog({TruckCheckIn}: {TruckCheckIn: TruckCheckIn
                   className="mt-1 p-2 block w-full rounded-md border border-gray-300"
            
                 ></textarea>
+                  <fieldset>
+          <legend className="mb-2 block text-sm font-medium">
+            Set the Truck Log Status.
+          </legend>
+          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
+            <div className="flex gap-4">
+              <div className="flex items-center">
+                <input
+                  id="checkedin"
+                  name="status"
+                  type="radio"
+                  value="checkedin"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="checkedin"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-yellow-500 px-3 py-1.5 text-xs font-medium text-white"
+                >
+                  Checked-In<ClockIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="checkedout"
+                  name="status"
+                  type="radio"
+                  value="checkedout"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="checkedout"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white"
+                >
+                  Checked-Out <CheckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="loading"
+                  name="status"
+                  type="radio"
+                  value="loading"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="loading"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-red-500 px-3 py-1.5 text-xs font-medium text-white"
+                >
+                  Loading <CheckIcon className="h-4 w-4" />
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="stripping"
+                  name="status"
+                  type="radio"
+                  value="stripping"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="stripping"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-blue-500 px-3 py-1.5 text-xs font-medium text-white"
+                >
+                  Stripping <CheckIcon className="h-4 w-4" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
               </div>
     
               {/* Submit Button */}

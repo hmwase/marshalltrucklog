@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { UpdateTruckLog, DeleteTruckLog } from '@/app/ui/trucklogs/buttons';
-// import InvoiceStatus from '@/app/ui/invoices/status';
+import { UpdateTruckLog, DeleteTruckLog, Location } from '@/app/ui/trucklogs/buttons';
+import TruckLogStatus from '@/app/ui/trucklogs/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredTruckCheckIns } from '@/app/lib/data';
+import { fetchFilteredTruckCheckInsForToday } from '@/app/lib/data';
 import TruckCheckIn from '@/app/lib/models/TruckCheckIn';
 
 
@@ -13,7 +13,9 @@ export default async function TruckLogTable({
   query?: string;
   currentPage: number;
 })  {
-  const truckCheckIns = await fetchFilteredTruckCheckIns(query, currentPage);
+
+  
+  const truckCheckIns = await fetchFilteredTruckCheckInsForToday(query, currentPage);
 
   return (
     <div className="mt-6 flow-root">
@@ -28,13 +30,13 @@ export default async function TruckLogTable({
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
-                      <Image
+                      {/* <Image
                         src={truckCheckIn.bolNumber}
                         className="mr-2 rounded-full"
                         width={28}
                         height={28}
                         alt='Customer profile picture'
-                      />
+                      /> */}
                       <p>{truckCheckIn.company}</p>
                     </div>
                     <p className="text-sm text-gray-500">{truckCheckIn.driversName}</p>
@@ -97,7 +99,7 @@ export default async function TruckLogTable({
                 </th>
                 
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Truck Check Id
+                  Truck Log Status
                 </th>
                 <th scope="col" className="relative py-3 pl-6 pr-3">
                   <span className="sr-only">Edit</span>
@@ -132,7 +134,11 @@ export default async function TruckLogTable({
                   </td>
                                     
                   <td className="whitespace-nowrap px-3 py-3">
-                    {truckCheckIn.location}
+                  
+                    <div className="flex items-center ">
+                      <Location title={truckCheckIn.location} />
+                    
+                    </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {truckCheckIn.destinationCity}
@@ -146,13 +152,13 @@ export default async function TruckLogTable({
                   <td className="whitespace-nowrap px-3 py-3">
                     {truckCheckIn.exitPlantDateTime?.toLocaleString()}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {truckCheckIn.truckCheckInId}
+                  <td className="whitespace-nowrap px-3 py-3 ">
+                    <TruckLogStatus status={truckCheckIn.status} />
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
                       <UpdateTruckLog id={truckCheckIn.truckCheckInId} />
-                      <DeleteTruckLog id={truckCheckIn.truckCheckInId} />
+                    
                     </div>
                   </td>          
                   

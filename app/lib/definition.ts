@@ -6,15 +6,23 @@ export type TruckCheckInFields = {
     driversName: string;
     truckNumber: string;
     trailerNumber: string;
+    proNumber : string;
+    carrierNumber: string,
     trailerType: string;
     bolNumber: string;
     sealNumber: string;
     location: string;
     destinationCity: string;
     destinationState: string;
-    inPlantDateTime?: Date | null;
+    inPlantDateTime?: Date;
     exitPlantDateTime?: Date | null;
-     truckCheckInId: number;
+    scheduledDate: Date | null,
+    loadingStartTime?: Date | null,
+    loadingEndTime?: Date | null,
+    strippingStartTime?: Date | null,
+    strippingEndTime?: Date | null,
+    status : string;
+    truckCheckInId: number;
   };
 
   export type user = {
@@ -28,3 +36,24 @@ export type TruckCheckInFields = {
     month: string;
     trucks: number;
   };
+
+  export type TruckLoadFields = {
+    LoadId: number,
+    loadSet: string,
+    scheduledDate: Date,
+    proNumber: string,
+    carrier: string,
+    destination: string,
+    state: string
+  }
+
+  export type LoadFields = {
+    'Load Set': string,
+     'Scheduled Date': number,
+    'Pro Number': string,
+    Carrier: string,
+    Destination: string,
+    State: string
+  }
+
+  

@@ -1,6 +1,6 @@
 import Pagination from '@/app/ui/trucklogs/pagination';
 import Search from '@/app/ui/search';
-import Table from '@/app/ui/trucklogs/table';
+import Table from '@/app/ui/stripping/table';
 // import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
