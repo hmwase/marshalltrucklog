@@ -10,11 +10,16 @@ export async function POST(request: Request) {
     const truckCheckIn = await TruckCheckIn.create(payload);
 
     if (loadId) {
-      const response = await Load.destroy({
-        where: {
-          LoadId: loadId,
+      const response = await Load.update(
+        {
+          isCheckedIn: true,
         },
-      });
+        {
+          where: {
+            LoadId: loadId,
+          },
+        }
+      );
       console.log(response);
     }
 

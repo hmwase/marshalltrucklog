@@ -1,9 +1,10 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require("sequelize");
 
 import sequelize from "../database";
 
-
-  const Load = sequelize.define('Load', {
+const Load = sequelize.define(
+  "Load",
+  {
     LoadId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -17,17 +18,16 @@ import sequelize from "../database";
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
-       
-      destination: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      state: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-     
-    
+
+    destination: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
     proNumber: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,17 +36,28 @@ import sequelize from "../database";
       type: DataTypes.STRING,
       allowNull: true,
     },
-    
-   
-  });
-  
+    isCheckedIn: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
+  },
+  {
+    defaultScope: {
+      where: {
+        isCheckedIn: false,
+      },
+    },
+  }
+);
 
-  sequelize.sync()
-    .then(() => {
-      console.log('YourModel table created successfully.');
-    })
-    .catch((err) => {
-      console.error('Error creating YourModel table:', err);
-    });
-  
+sequelize
+  .sync()
+  .then(() => {
+    console.log("YourModel table created successfully.");
+  })
+  .catch((err) => {
+    console.error("Error creating YourModel table:", err);
+  });
+
 export default Load;
